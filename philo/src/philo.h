@@ -6,7 +6,7 @@
 /*   By: kkaiyawo <kkaiyawo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 09:23:03 by kkaiyawo          #+#    #+#             */
-/*   Updated: 2023/05/16 14:45:16 by kkaiyawo         ###   ########.fr       */
+/*   Updated: 2023/05/16 15:03:10 by kkaiyawo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@
 # endif
 
 typedef pthread_mutex_t	t_mutex;
+typedef struct timeval	t_timeval;
 
 typedef struct s_data
 {
@@ -61,6 +62,7 @@ typedef struct s_philo
 	int			id;
 	t_data		*data;
 	pthread_t	thread;
+	t_timeval	last_eat;
 	int			eat_cnt;
 }					t_philo;
 
@@ -72,14 +74,14 @@ enum e_error
 };
 
 void	philo_init(t_philo **philo, t_data *data, int argc, char **argv);
-void	philo_cycle(void *ptr);
-void	philo_eat();
-void	philo_sleep();
-void	philo_think();
+void	*philo_cycle(void *ptr);
+void	philo_take_fork(t_philo *philo);
+void	philo_eat(t_philo *philo);
+void	philo_sleep(t_philo *philo);
+void	philo_think(t_philo *philo);
 void	philo_free(t_philo **philo, t_data *data);
 void	philo_error(t_philo **philo, char *msg, enum e_error err, int errnum);
 
-void	*malloc_and_check(size_t size);
-void	*malloc_check(void *ptr);
+void	*malloc_check(size_t size);
 
 #endif

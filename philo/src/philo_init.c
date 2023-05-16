@@ -6,7 +6,7 @@
 /*   By: kkaiyawo <kkaiyawo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 14:33:28 by kkaiyawo          #+#    #+#             */
-/*   Updated: 2023/05/16 14:40:44 by kkaiyawo         ###   ########.fr       */
+/*   Updated: 2023/05/16 15:00:08 by kkaiyawo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	philo_init(t_philo **philo, t_data *data, int argc, char **argv)
 		(*philo)[i].id = i + 1;
 		(*philo)[i].data = data;
 		(*philo)[i].eat_cnt = 0;
+		gettimeofday(&(*philo)[i].last_eat, NULL);
 		pthread_mutex_init(&data->fork[i], NULL);
 	}
 }
