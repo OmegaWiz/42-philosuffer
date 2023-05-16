@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   template.c.c                                       :+:      :+:    :+:   */
+/*   template.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kkaiyawo <kkaiyawo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 11:35:09 by kkaiyawo          #+#    #+#             */
-/*   Updated: 2023/05/16 14:27:30 by kkaiyawo         ###   ########.fr       */
+/*   Updated: 2023/05/16 15:04:18 by kkaiyawo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ pthread_mutex_t	mutex;
 
 void	*routine(void *num)
 {
-	struct timeval	tv;
+	t_timeval	tv;
 	long			*sec;
 
 	printf("Hello, I'm a philosopher %d\n", *(int *) num);

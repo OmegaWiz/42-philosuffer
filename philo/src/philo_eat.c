@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_cycle.c                                      :+:      :+:    :+:   */
+/*   philo_eat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kkaiyawo <kkaiyawo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/16 14:46:47 by kkaiyawo          #+#    #+#             */
-/*   Updated: 2023/05/16 15:13:06 by kkaiyawo         ###   ########.fr       */
+/*   Created: 2023/05/16 15:04:23 by kkaiyawo          #+#    #+#             */
+/*   Updated: 2023/05/16 15:20:35 by kkaiyawo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	*philo_cycle(void *ptr)
+void	philo_eat(t_philo *philo)
 {
-	t_philo *philo;
+	t_timeval	now;
 
-	philo = (t_philo *) ptr;
-	while (!philo->data->end)
-	{
-		philo_take_fork(philo);
-		philo_eat(philo);
-		philo_sleep(philo);
-		philo_think(philo);
-	}
-	return (NULL);
+	gettimeofday(&time, NULL);
+	if (is_dead(philo, now))
+		return ;
+	philo_print(philo, EAT, now);
+	philo->eat_cnt++;
+	philo->last_eat = now;
+	usleep(philo->data->eat_time * 1000);
 }
