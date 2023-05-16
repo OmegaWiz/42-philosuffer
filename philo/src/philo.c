@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kkaiyawo <kkaiyawo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/16 09:28:45 by kkaiyawo          #+#    #+#             */
-/*   Updated: 2023/05/16 10:21:40 by kkaiyawo         ###   ########.fr       */
+/*   Created: 2023/05/16 14:27:24 by kkaiyawo          #+#    #+#             */
+/*   Updated: 2023/05/16 14:45:30 by kkaiyawo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,23 @@
 
 int	main(int argc, char **argv)
 {
-	if (argc < 5 || argc > 6)
-		return (ft_error("Error: Wrong number of arguments\n"));
-	
+	t_philo	*philo;
+	t_data	data;
+	int		i;
+
+	philo_init(&philo, &data, argc, argv);
+	i = -1;
+	while (++i < data.philo_cnt)
+	{
+		if (pthread_create(&philo[i].thread, NULL, &philo_cycle, &philo[i]))
+			philo_error(&philo, NULL, THREAD_ERROR, 0);
+	}
+	i = -1;
+	while (++i < data.philo_cnt)
+	{
+		if (pthread_join(philo[i].thread, NULL))
+			philo_error(&philo, NULL, THREAD_ERROR, 0);
+	}
+	philo_free(&philo, &data);
+	return (0);
 }

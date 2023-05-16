@@ -6,7 +6,7 @@
 #    By: kkaiyawo <kkaiyawo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/16 09:22:56 by kkaiyawo          #+#    #+#              #
-#    Updated: 2023/05/16 09:30:41 by kkaiyawo         ###   ########.fr        #
+#    Updated: 2023/05/16 14:38:37 by kkaiyawo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ BONUS_OBJ		=	${BONUS:.c=.o}
 
 ### COMPILATION ###
 CC				=	gcc
-CFLAG			=	-g -Wall -Wextra -Werror -O3 -fsanitize=address
+CFLAG			=	-g -pthread -Wall -Wextra -Werror -O3 -fsanitize=address
 RM				=	rm -f
 
 all:			${BUILD_DIR} ${NAME}
