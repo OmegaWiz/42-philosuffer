@@ -6,7 +6,7 @@
 /*   By: kkaiyawo <kkaiyawo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 09:23:03 by kkaiyawo          #+#    #+#             */
-/*   Updated: 2023/05/17 08:20:03 by kkaiyawo         ###   ########.fr       */
+/*   Updated: 2023/05/17 09:25:59 by kkaiyawo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct s_data
 	int			min_eat;
 	bool		end;
 	t_timeval	start;
-	t_mutex	*fork;
+	t_mutex		*fork;
 }					t_data;
 
 typedef struct s_philo
