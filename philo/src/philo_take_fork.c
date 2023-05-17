@@ -6,7 +6,7 @@
 /*   By: kkaiyawo <kkaiyawo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 08:29:31 by kkaiyawo          #+#    #+#             */
-/*   Updated: 2023/05/17 08:39:31 by kkaiyawo         ###   ########.fr       */
+/*   Updated: 2023/05/17 08:54:57 by kkaiyawo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ void	philo_take_fork(t_philo *philo)
 	int			right;
 	t_timeval	tv;
 
+	gettimeofday(&tv, NULL);
+	if (is_starve(philo, tv) == true)
+		return ;
 	left = (philo->id - 1 + philo->data->philo_cnt) % philo->data->philo_cnt;
 	right = (philo->id + philo->data->philo_cnt) % philo->data->philo_cnt;
 	pthread_mutex_lock(&philo->data->fork[left]);
