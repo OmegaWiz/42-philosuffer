@@ -6,7 +6,7 @@
 /*   By: kkaiyawo <kkaiyawo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 09:23:03 by kkaiyawo          #+#    #+#             */
-/*   Updated: 2023/05/16 15:18:47 by kkaiyawo         ###   ########.fr       */
+/*   Updated: 2023/05/17 08:20:03 by kkaiyawo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ enum e_state
 
 void	philo_init(t_philo **philo, t_data *data, int argc, char **argv);
 void	*philo_cycle(void *ptr);
-bool	is_dead(t_philo *philo, t_timeval now);
+bool	is_starve(t_philo *philo, t_timeval now);
 void	philo_print(t_philo *philo, enum e_state state, t_timeval now);
 void	philo_take_fork(t_philo *philo);
 void	philo_eat(t_philo *philo);

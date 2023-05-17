@@ -6,7 +6,7 @@
 #    By: kkaiyawo <kkaiyawo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/16 09:22:56 by kkaiyawo          #+#    #+#              #
-#    Updated: 2023/05/16 15:02:12 by kkaiyawo         ###   ########.fr        #
+#    Updated: 2023/05/17 08:23:56 by kkaiyawo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ BONUS_DIR		=	./bonus/
 BUILD_DIR		=	./build/
 
 ### FILES ###
-SRC_FILE		=	philo.c philo_init.c philo_cycle.c
+SRC_FILE		=	philo.c philo_init.c philo_cycle.c is_starve.c
 BONUS_FILE		=
 
 ### PATH ###
