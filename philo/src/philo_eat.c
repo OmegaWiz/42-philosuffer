@@ -6,7 +6,7 @@
 /*   By: kkaiyawo <kkaiyawo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:04:23 by kkaiyawo          #+#    #+#             */
-/*   Updated: 2023/05/16 15:20:35 by kkaiyawo         ###   ########.fr       */
+/*   Updated: 2023/05/17 08:27:50 by kkaiyawo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	philo_eat(t_philo *philo)
 {
 	t_timeval	now;
 
-	gettimeofday(&time, NULL);
-	if (is_dead(philo, now))
+	gettimeofday(&now, NULL);
+	if (is_starve(philo, now))
 		return ;
 	philo_print(philo, EAT, now);
 	philo->eat_cnt++;
