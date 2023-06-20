@@ -6,7 +6,7 @@
 /*   By: kkaiyawo <kkaiyawo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 09:23:03 by kkaiyawo          #+#    #+#             */
-/*   Updated: 2023/06/20 08:54:50 by kkaiyawo         ###   ########.fr       */
+/*   Updated: 2023/06/20 09:04:13 by kkaiyawo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,19 +92,21 @@ typedef struct s_data
 }					t_data;
 
 // philo.c
+void	print_instruction(void);
 void	philo_error(t_data *data, char *str, t_error error, int errnum);
 
 // data_utils.c
 void	data_init(t_data *data, int argc, char **argv);
+t_data	*data_free(t_data *data);
 
 // philo_utils.c
 t_philo	*philo_init(t_data *data, int argc, char **argv);
+t_philo	*philo_free(t_philo *philo);
 
 // philo_cycle.c
 void	*philo_cycle(void *arg);
 
 // unwritten funcitons
 int		get_time(void);
-t_data	*data_free(t_data *data);
 
 #endif

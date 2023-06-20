@@ -6,7 +6,7 @@
 /*   By: kkaiyawo <kkaiyawo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 20:16:37 by kkaiyawo          #+#    #+#             */
-/*   Updated: 2023/06/20 08:40:52 by kkaiyawo         ###   ########.fr       */
+/*   Updated: 2023/06/20 09:06:30 by kkaiyawo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	data_init(t_data *data, int argc, char **argv)
 {
 	int	i;
-
+//check_input
 	data->philo_cnt = ft_atoi(argv[1]);
 	data->time_to_die = ft_atoi(argv[2]);
 	data->time_to_eat = ft_atoi(argv[3]);
@@ -38,4 +38,18 @@ void	data_init(t_data *data, int argc, char **argv)
 	data->philo = philo_init(data, argc, argv);
 	if (!data->philo)
 		philo_error(data, NULL, MALLOC_ERROR, 0);
+}
+
+t_data	*data_free(t_data *data)
+{
+	int	i;
+
+	i = -1;
+	while (++i < data->philo_cnt)
+		pthread_mutex_destroy(&data->forks[i]);
+	pthread_mutex_destroy(&data->dead);
+	pthread_mutex_destroy(&data->print);
+	free(data->forks);
+	data->philo(data->philo);
+	return (NULL);
 }
