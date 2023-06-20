@@ -6,7 +6,7 @@
 /*   By: kkaiyawo <kkaiyawo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 20:24:09 by kkaiyawo          #+#    #+#             */
-/*   Updated: 2023/06/20 12:02:07 by kkaiyawo         ###   ########.fr       */
+/*   Updated: 2023/06/20 12:03:55 by kkaiyawo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,11 @@ t_philo	*philo_init(t_data *data, int argc, char **argv)
 		philo[i].data = data;
 	}
 	return (philo);
+}
+
+t_philo		*philo_free(t_philo *philo)
+{
+	if (philo)
+		free(philo);
+	return (NULL);
 }

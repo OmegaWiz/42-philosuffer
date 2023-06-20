@@ -6,7 +6,7 @@
 /*   By: kkaiyawo <kkaiyawo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 14:27:24 by kkaiyawo          #+#    #+#             */
-/*   Updated: 2023/06/20 10:20:38 by kkaiyawo         ###   ########.fr       */
+/*   Updated: 2023/06/20 12:03:33 by kkaiyawo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	main(int argc, char **argv)
 		if (pthread_join(philo[i].thread, NULL) != 0)
 			philo_error(&philo, NULL, THREAD_ERROR, 0);
 	}
-	philo_free(&philo, &data);
+	philo = philo_free(&philo);
+	data_free(&data);
 	return (0);
 }
