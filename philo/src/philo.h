@@ -6,7 +6,7 @@
 /*   By: kkaiyawo <kkaiyawo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 09:23:03 by kkaiyawo          #+#    #+#             */
-/*   Updated: 2023/06/20 10:33:38 by kkaiyawo         ###   ########.fr       */
+/*   Updated: 2023/06/20 11:28:35 by kkaiyawo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ typedef enum e_status
 	THINK_U,
 	EAT,
 	SLEEP,
+	THINK,
+	DEAD,
 }	t_status;
 
 typedef enum e_error
@@ -105,10 +107,11 @@ t_philo		*philo_init(t_data *data, int argc, char **argv);
 t_philo		*philo_free(t_philo *philo);
 
 // philo_cycle.c
+void		print_status(t_philo *philo);
 void		*philo_cycle(void *arg);
 
 // cycle_utils.c
-int			get_timerel(void);
+long		get_timerel(t_timeval start, t_timeval end);
 t_timeval	get_timeval(void);
 bool		set_dead(t_data *data)
 bool		is_dead(t_philo *philo);
