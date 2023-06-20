@@ -6,7 +6,7 @@
 /*   By: kkaiyawo <kkaiyawo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 09:23:03 by kkaiyawo          #+#    #+#             */
-/*   Updated: 2023/06/20 10:30:31 by kkaiyawo         ###   ########.fr       */
+/*   Updated: 2023/06/20 10:33:38 by kkaiyawo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void		*philo_cycle(void *arg);
 int			get_timerel(void);
 t_timeval	get_timeval(void);
 bool		set_dead(t_data *data)
-bool		is_dead(t_philo *philo, t_data *data);
+bool		is_dead(t_philo *philo);
 
 // ft_atou.c
 int			ft_atou_warn(const char *nptr);
