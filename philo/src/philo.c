@@ -6,7 +6,7 @@
 /*   By: kkaiyawo <kkaiyawo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 14:27:24 by kkaiyawo          #+#    #+#             */
-/*   Updated: 2023/06/20 09:06:24 by kkaiyawo         ###   ########.fr       */
+/*   Updated: 2023/06/20 10:20:38 by kkaiyawo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,25 @@ int	main(int argc, char **argv)
 	int		i;
 
 	data_init(&data, argc, argv);
-	i = -1;
-	while (++i < data.philo_cnt)
+	philo = philo_init(&data, argc, argv);
+	i = 0;
+	while (i < data.philo_cnt)
 	{
 		if (pthread_create(&philo[i].thread, NULL, philo_cycle, &philo[i]))
 			philo_error(&philo, NULL, THREAD_ERROR, 0);
+		i += 2;
+	}
+	i = 1;
+	while (i < data.philo_cnt)
+	{
+		if (pthread_create(&philo[i].thread, NULL, philo_cycle, &philo[i]))
+			philo_error(&philo, NULL, THREAD_ERROR, 0);
+		i += 2;
 	}
 	i = -1;
 	while (++i < data.philo_cnt)
 	{
-		if (pthread_join(philo[i].thread, NULL))
+		if (pthread_join(philo[i].thread, NULL) != 0)
 			philo_error(&philo, NULL, THREAD_ERROR, 0);
 	}
 	philo_free(&philo, &data);

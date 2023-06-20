@@ -6,7 +6,7 @@
 /*   By: kkaiyawo <kkaiyawo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 20:24:09 by kkaiyawo          #+#    #+#             */
-/*   Updated: 2023/06/08 20:30:36 by kkaiyawo         ###   ########.fr       */
+/*   Updated: 2023/06/20 10:22:42 by kkaiyawo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,11 @@ t_philo	*philo_init(t_data *data, int argc, char **argv)
 		philo[i].eat_cnt = 0;
 		philo[i].status = THINK;
 		philo[i].last_eat = data->start;
+		philo[i].last_sleep = data->start;
+		philo[i].now = data->start;
 		philo[i].lfork = i;
 		philo[i].rfork = (i + 1) % data->philo_cnt;
+		philo[i].data = data;
 	}
 	return (philo);
 }

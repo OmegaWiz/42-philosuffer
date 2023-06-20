@@ -6,7 +6,7 @@
 /*   By: kkaiyawo <kkaiyawo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 20:16:37 by kkaiyawo          #+#    #+#             */
-/*   Updated: 2023/06/20 09:39:18 by kkaiyawo         ###   ########.fr       */
+/*   Updated: 2023/06/20 10:09:06 by kkaiyawo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	data_init(t_data *data, int argc, char **argv)
 	int	i;
 
 	arg_init(data, argc, argv);
-	data->end_cnt = 0;
+	data->full_cnt = 0;
 	data->is_dead = false;
 	data->start = get_time();
 	data->forks = malloc(sizeof(t_mutex) * data->philo_cnt);

@@ -6,7 +6,7 @@
 /*   By: kkaiyawo <kkaiyawo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 09:23:03 by kkaiyawo          #+#    #+#             */
-/*   Updated: 2023/06/20 09:35:35 by kkaiyawo         ###   ########.fr       */
+/*   Updated: 2023/06/20 10:30:31 by kkaiyawo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@
 # ifndef STDERR_FILENO
 #  define STDERR_FILENO 2
 # endif
-# ifndef BONUS
-#  define BONUS 0
+# ifndef COLOR
+#  define COLOR 1
 # endif
 
 typedef pthread_mutex_t	t_mutex;
@@ -63,18 +63,6 @@ typedef enum e_error
 	GETTIMEOFDAY_ERROR,
 }	t_error;
 
-typedef struct s_philo
-{
-	int				id;
-	int				eat_cnt;
-	t_status		status;
-	t_timeval		last_eat;
-	int				lfork;
-	int				rfork;
-	pthread_t		thread;
-}					t_philo;
-
-
 typedef struct s_data
 {
 	int			philo_cnt;
@@ -82,34 +70,50 @@ typedef struct s_data
 	int			time_to_eat;
 	int			time_to_sleep;
 	int			eat_cnt;
-	int			end_cnt;
+	int			full_cnt;
 	bool		is_dead;
 	t_timeval	start;
 	t_mutex		*forks;
 	t_mutex		dead;
 	t_mutex		print;
-	t_philo		*philo;
 }					t_data;
 
+typedef struct s_philo
+{
+	int				id;
+	int				eat_cnt;
+	t_status		status;
+	t_timeval		last_eat;
+	t_timeval		last_sleep;
+	t_timeval		now;
+	int				lfork;
+	int				rfork;
+	pthread_t		thread;
+	t_data			*data;
+}					t_philo;
+
 // philo.c
-void	print_instruction(void);
-void	philo_error(t_data *data, char *str, t_error error, int errnum);
+void		print_instruction(void);
+void		philo_error(t_data *data, char *str, t_error error, int errnum);
 
 // data_utils.c
-void	data_init(t_data *data, int argc, char **argv);
-t_data	*data_free(t_data *data);
+void		data_init(t_data *data, int argc, char **argv);
+t_data		*data_free(t_data *data);
 
 // philo_utils.c
-t_philo	*philo_init(t_data *data, int argc, char **argv);
-t_philo	*philo_free(t_philo *philo);
+t_philo		*philo_init(t_data *data, int argc, char **argv);
+t_philo		*philo_free(t_philo *philo);
 
 // philo_cycle.c
-void	*philo_cycle(void *arg);
+void		*philo_cycle(void *arg);
+
+// cycle_utils.c
+int			get_timerel(void);
+t_timeval	get_timeval(void);
+bool		set_dead(t_data *data)
+bool		is_dead(t_philo *philo, t_data *data);
 
 // ft_atou.c
-int		ft_atou_warn(const char *nptr);
-
-// unwritten funcitons
-int		get_time(void);
+int			ft_atou_warn(const char *nptr);
 
 #endif
