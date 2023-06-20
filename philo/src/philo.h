@@ -6,7 +6,7 @@
 /*   By: kkaiyawo <kkaiyawo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 09:23:03 by kkaiyawo          #+#    #+#             */
-/*   Updated: 2023/05/17 09:25:59 by kkaiyawo         ###   ########.fr       */
+/*   Updated: 2023/06/20 08:54:50 by kkaiyawo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,53 +46,65 @@
 typedef pthread_mutex_t	t_mutex;
 typedef struct timeval	t_timeval;
 
-typedef struct s_data
+typedef enum e_status
 {
-	int			philo_cnt;
-	long		die_time;
-	long		eat_time;
-	long		bed_time;
-	int			min_eat;
-	bool		end;
-	t_timeval	start;
-	t_mutex		*fork;
-}					t_data;
+	THINK_I,
+	THINK_U,
+	EAT,
+	SLEEP,
+}	t_status;
+
+typedef enum e_error
+{
+	ARG_ERROR,
+	THREAD_ERROR,
+	MALLOC_ERROR,
+	MUTEX_ERROR,
+	GETTIMEOFDAY_ERROR,
+}	t_error;
 
 typedef struct s_philo
 {
-	int			id;
-	t_data		*data;
-	pthread_t	thread;
-	t_timeval	last_eat;
-	int			eat_cnt;
+	int				id;
+	int				eat_cnt;
+	t_status		status;
+	t_timeval		last_eat;
+	int				lfork;
+	int				rfork;
+	pthread_t		thread;
 }					t_philo;
 
-enum e_error
+
+typedef struct s_data
 {
-	ARGC_ERROR,
-	THREAD_ERROR,
-	MALLOC_ERROR,
-};
+	int			philo_cnt;
+	int			time_to_die;
+	int			time_to_eat;
+	int			time_to_sleep;
+	int			eat_cnt;
+	int			end_cnt;
+	bool		is_dead;
+	t_timeval	start;
+	t_mutex		*forks;
+	t_mutex		dead;
+	t_mutex		print;
+	t_philo		*philo;
+}					t_data;
 
-enum e_state
-{
-	FORK,
-	EAT,
-	SLEEP,
-	THINK,
-};
+// philo.c
+void	philo_error(t_data *data, char *str, t_error error, int errnum);
 
-void	philo_init(t_philo **philo, t_data *data, int argc, char **argv);
-void	*philo_cycle(void *ptr);
-bool	is_starve(t_philo *philo, t_timeval now);
-void	philo_print(t_philo *philo, enum e_state state, t_timeval now);
-void	philo_take_fork(t_philo *philo);
-void	philo_eat(t_philo *philo);
-void	philo_sleep(t_philo *philo);
-void	philo_think(t_philo *philo);
-void	philo_free(t_philo **philo, t_data *data);
-void	philo_error(t_philo **philo, char *msg, enum e_error err, int errnum);
+// data_utils.c
+void	data_init(t_data *data, int argc, char **argv);
 
-void	*malloc_check(size_t size);
+// philo_utils.c
+t_philo	*philo_init(t_data *data, int argc, char **argv);
+
+// philo_cycle.c
+void	*philo_cycle(void *arg);
+
+// unwritten funcitons
+int		get_time(void);
+t_data	*data_free(t_data *data);
 
 #endif

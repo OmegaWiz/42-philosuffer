@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_sleep.c                                      :+:      :+:    :+:   */
+/*   philo_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kkaiyawo <kkaiyawo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/17 08:48:29 by kkaiyawo          #+#    #+#             */
-/*   Updated: 2023/05/17 08:55:32 by kkaiyawo         ###   ########.fr       */
+/*   Created: 2023/06/08 20:24:09 by kkaiyawo          #+#    #+#             */
+/*   Updated: 2023/06/08 20:30:36 by kkaiyawo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	philo_sleep(t_philo *philo)
+t_philo	*philo_init(t_data *data, int argc, char **argv)
 {
-	t_timeval	now;
+	t_philo	*philo;
+	int		i;
 
-	gettimeofday(&now, NULL);
-	if (is_starve(philo, now))
-		return ;
-	philo_print(philo, SLEEP, now);
-	usleep(philo->data->sleep_time * 1000);
+	philo = malloc(sizeof(t_philo) * data->philo_cnt);
+	if (!philo)
+		return (NULL);
+	i = -1;
+	while (++i < data->philo_cnt)
+	{
+		philo[i].id = i + 1;
+		philo[i].eat_cnt = 0;
+		philo[i].status = THINK;
+		philo[i].last_eat = data->start;
+		philo[i].lfork = i;
+		philo[i].rfork = (i + 1) % data->philo_cnt;
+	}
+	return (philo);
 }
