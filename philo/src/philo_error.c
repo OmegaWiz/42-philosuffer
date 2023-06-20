@@ -6,7 +6,7 @@
 /*   By: kkaiyawo <kkaiyawo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 08:45:12 by kkaiyawo          #+#    #+#             */
-/*   Updated: 2023/06/20 09:03:10 by kkaiyawo         ###   ########.fr       */
+/*   Updated: 2023/06/20 09:37:16 by kkaiyawo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,11 @@ void	philo_error(t_data *data, char *str, t_error error, int errnum)
 {
 	ft_putstr_fd("philo: ", 2);
 	if (err == ARG_ERROR)
+	{
+		ft_putstr_fd("invalid argument: ", 2);
+		ft_putendl_fd(str, 2);
 		print_instruction();
+	}
 	else
 		ft_putendl_fd(strerror(errnum), 2);
 	if (data != NULL)
